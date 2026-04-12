@@ -13,8 +13,20 @@
   --shadow-md: 0 12px 40px rgba(53, 102, 24, 0.12);
   --radius: 12px;
   --radius-lg: 20px;
-  --font-sans: "DM Sans", system-ui, sans-serif;
-  --font-display: "Fraunces", Georgia, serif;
+  /* Systémový stack ve stylu Apple: SF Pro na macOS/iOS, Segoe UI na Windows, Roboto na Androidu */
+  --font-system:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "SF Pro Display",
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+  --font-sans: var(--font-system);
+  --font-display: var(--font-system);
   --header-h: clamp(68px, 12vw, 84px);
   --brand-logo-h: clamp(46px, 13vw, 56px);
 }
@@ -39,9 +51,12 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   font-size: 1.0625rem;
-  line-height: 1.65;
+  line-height: 1.5;
   color: var(--color-text);
   background: var(--color-bg);
+  font-feature-settings: "kern" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
@@ -299,7 +314,8 @@ a:hover {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4.5vw, 2.75rem);
   font-weight: 700;
-  line-height: 1.15;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   margin: 0 0 1rem;
   color: var(--color-accent-dark);
 }
@@ -362,19 +378,8 @@ a:hover {
   background: linear-gradient(180deg, #eef6e8 0%, #e8efe3 100%);
 }
 
-/* Sekční nadpisy: systémový sans (SF Pro na Apple) – čistý „Apple-like“ vzhled */
 .section h2 {
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "SF Pro Text",
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(1.5625rem, 2.85vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.028em;
