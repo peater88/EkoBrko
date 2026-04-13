@@ -315,6 +315,28 @@ a:hover {
   object-position: center center;
 }
 
+/* Úzký displej: cover ořezává strany videa → contain. Výšku držíme z poměru stran videa, ne z vh → žádné prázdné pruhy. */
+@media (max-width: 768px) {
+  .hero-visual {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1642 / 1080;
+  }
+
+  .hero-video {
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .hero-backdrop {
+    background: var(--color-bg) url("../assets/hero-poster.png") center / contain no-repeat;
+  }
+
+  .hero-backdrop.hero-video-failed {
+    background-size: contain;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-video {
     display: none;
