@@ -2,9 +2,30 @@
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");
   var yearEl = document.getElementById("year");
+  var heroVideo = document.querySelector(".hero-video");
+  var heroBackdrop = document.querySelector(".hero-backdrop");
 
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
+  }
+
+  function markHeroVideoFailed() {
+    if (heroBackdrop) heroBackdrop.classList.add("hero-video-failed");
+  }
+
+  if (heroVideo && heroBackdrop) {
+    heroVideo.addEventListener("error", markHeroVideoFailed);
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      heroVideo.muted = true;
+      heroVideo.defaultMuted = true;
+      heroVideo.setAttribute("muted", "");
+      var tryPlay = function () {
+        heroVideo.play().catch(function () {});
+      };
+      if (heroVideo.readyState >= 2) tryPlay();
+      else heroVideo.addEventListener("loadeddata", tryPlay, { once: true });
+    }
   }
 
   if (!toggle || !nav) return;
