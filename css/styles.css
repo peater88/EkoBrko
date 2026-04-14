@@ -293,7 +293,7 @@ a:hover {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: var(--color-bg);
+  background: #fff;
 }
 
 .hero-backdrop {
@@ -302,7 +302,7 @@ a:hover {
   aspect-ratio: 1168 / 768;
   z-index: 0;
   overflow: hidden;
-  background: var(--color-bg);
+  background: #fff;
 }
 
 /* Desktop: video má být vizuálně menší, ne přes půl obrazovky. */
@@ -338,25 +338,6 @@ a:hover {
   .hero-video {
     display: none;
   }
-
-  .hero-backdrop {
-    background-image: url("../assets/hero-poster.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-}
-
-/* Když se video nenačte (404, nepodporovaný soubor) – zůstane statický plakát. */
-.hero-backdrop.hero-video-failed .hero-video {
-  display: none;
-}
-
-.hero-backdrop.hero-video-failed {
-  background-image: url("../assets/hero-poster.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .hero-panel {
