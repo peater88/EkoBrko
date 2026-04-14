@@ -21,6 +21,7 @@
       heroVideo.defaultMuted = true;
       heroVideo.setAttribute("muted", "");
       var tryPlay = function () {
+        heroVideo.playbackRate = 0.8;
         heroVideo.play().catch(function () {});
       };
       if (heroVideo.readyState >= 2) tryPlay();

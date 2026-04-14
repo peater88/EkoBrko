@@ -292,18 +292,17 @@ a:hover {
 .hero-visual {
   position: relative;
   width: 100%;
-  height: min(58vh, 640px);
-  min-height: 280px;
   overflow: hidden;
   background: var(--color-bg);
 }
 
 .hero-backdrop {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1642 / 1080;
   z-index: 0;
   overflow: hidden;
-  background: var(--color-bg) url("../assets/hero-poster.png") center / cover no-repeat;
+  background: var(--color-bg) url("../assets/hero-poster.png") center / contain no-repeat;
 }
 
 .hero-video {
@@ -311,16 +310,14 @@ a:hover {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain !important;
   object-position: center center;
 }
 
-/* Úzký displej: cover ořezává strany videa → contain. Výšku držíme z poměru stran videa, ne z vh → žádné prázdné pruhy. */
+/* Úzký displej: stejný poměr stran, jen bez minimální výšky. */
 @media (max-width: 768px) {
   .hero-visual {
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 1642 / 1080;
+    overflow: hidden;
   }
 
   .hero-video {
@@ -350,7 +347,7 @@ a:hover {
 
 .hero-backdrop.hero-video-failed {
   background-image: url("../assets/hero-poster.png");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
