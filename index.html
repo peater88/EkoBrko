@@ -28,7 +28,8 @@
   <meta name="twitter:description" content="Odvoz zeminy, výkopů a bioodpad (tráva, listí, větve) – Mnichovo Hradiště, Mladá Boleslav. Kompost, zemina, recyklace. EkoBRKO Přestavlky, tel. 774 243 508.">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=20260414b">
+  <link rel="dns-prefetch" href="https://api.open-meteo.com">
+  <link rel="stylesheet" href="css/styles.css?v=20260419d">
 </head>
 <body>
   <a class="skip-link" href="#main">Přeskočit na obsah</a>
@@ -61,6 +62,7 @@
           <video
             class="hero-video"
             src="assets/zpracovani.mp4"
+            poster="assets/zpracovani-poster.jpg"
             width="1168"
             height="768"
             autoplay
@@ -184,8 +186,21 @@
           </p>
           <address class="address-block">
             <strong>EkoBRKO s.r.o.</strong><br>
-            Přestavlky u Mnichova Hradiště<br>
-            <a href="https://maps.google.com/?q=50.520778,15.001222" rel="noopener noreferrer" title="Otevřít polohu areálu v Google Mapách">Ukázat areál na mapě</a>
+            Přestavlky u Mnichova Hradiště
+            <div class="address-map-preview">
+              <iframe
+                class="address-map-frame"
+                title="Poloha areálu – mapu můžete posouvat a přibližovat"
+                width="560"
+                height="315"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=14.989%2C50.5128%2C15.0134%2C50.5288&amp;layer=mapnik&amp;marker=50.520778%2C15.001222"
+              ></iframe>
+            </div>
+            <p class="address-map-google">
+              <a href="https://maps.google.com/?q=50.520778,15.001222" target="_blank" rel="noopener noreferrer" title="Otevřít polohu areálu v Google Mapách">Ukázat areál na mapě</a>
+            </p>
           </address>
           <p class="hours">
             <strong>Po – Pá:</strong> 7:00 – 16:00<br>
@@ -250,6 +265,17 @@
     </div>
   </footer>
 
+  <aside id="weather-widget" class="weather-widget" hidden aria-live="polite">
+    <p class="weather-widget-head">Počasí · <span class="weather-widget-place">Mnichovo Hradiště</span></p>
+    <p class="weather-widget-line">
+      <span class="weather-widget-temp"></span><span class="weather-widget-sep" aria-hidden="true"> · </span><span class="weather-widget-desc"></span>
+    </p>
+    <p class="weather-widget-wind"></p>
+    <p class="weather-widget-credit">
+      Data: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>
+    </p>
+  </aside>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -307,6 +333,6 @@
     ]
   }
   </script>
-  <script src="js/main.js?v=20260414b" defer></script>
+  <script src="js/main.js?v=20260419d" defer></script>
 </body>
 </html>
