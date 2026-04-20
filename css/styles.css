@@ -769,3 +769,33 @@ a:hover {
   opacity: 0.75;
   font-size: 0.8rem !important;
 }
+
+.footer-social {
+  margin-top: 0.5rem !important;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+  color: #fff;
+  opacity: 1;
+  outline: none;
+}
+
+.footer-social-icon {
+  display: block;
+  border-radius: 50%;
+}
+
+.footer-social-label {
+  font-size: 0.85rem;
+}
