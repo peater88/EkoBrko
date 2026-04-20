@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ekobrko.cz/sitemap.xml
+Sitemap: https://www.ekobrko.cz/sitemap.xml
