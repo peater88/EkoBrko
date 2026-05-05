@@ -29,7 +29,7 @@
   <meta name="twitter:description" content="Uložení a zpracování zeminy, výkopku a bioodpadu – Mnichovo Hradiště, Mladá Boleslav a okolí. Kompost, zemina, recyklace. EkoBRKO Přestavlky, tel. 774 243 508.">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=20260419e">
+  <link rel="stylesheet" href="css/styles.css?v=20260505">
 </head>
 <body>
   <a class="skip-link" href="#main">Přeskočit na obsah</a>
@@ -49,6 +49,7 @@
           <li><a href="#kdo-jsme">Kdo jsme</a></li>
           <li><a href="#jak-to-funguje">Jak to funguje</a></li>
           <li><a href="#cenik">Ceník</a></li>
+          <li><a href="#aktuality">Aktuality</a></li>
           <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
         </ul>
       </nav>
@@ -172,7 +173,44 @@
       </div>
     </section>
 
-    <section class="section section-alt" id="kontakt" aria-labelledby="kontakt-heading">
+    <section class="section section-alt" id="aktuality" aria-labelledby="aktuality-heading">
+      <div class="container">
+        <h2 id="aktuality-heading">Aktuality</h2>
+        <p class="section-intro center">Novinky z provozu, sezónní informace a oznámení.</p>
+
+        <!--
+          Karty článků: na hlavní stránce zobrazujeme nejnovější ~3 položky.
+          Při přidání nového článku zkopírujte jednu <article class="news-card"> i do
+          souboru aktuality/index.html (tam je úplný seznam).
+        -->
+        <ul class="grid news-grid" role="list">
+          <li>
+            <article class="news-card">
+              <time class="news-date" datetime="2026-05-05">5. 5. 2026</time>
+              <h3 class="news-title">
+                <a href="https://www.facebook.com/EkoBRKOsro/" target="_blank" rel="noopener noreferrer">
+                  Sledujte nás také na Facebooku
+                </a>
+              </h3>
+              <p class="news-excerpt">
+                EkoBRKO je tam v novém. Najdete tam fotky z provozu, oznámení a aktuality přímo z areálu.
+              </p>
+            </article>
+          </li>
+        </ul>
+
+        <p class="news-empty">
+          Zatím tu žádné další aktuality nejsou. Sledujte tuto sekci, nebo nás na
+          <a href="https://www.facebook.com/EkoBRKOsro/" target="_blank" rel="noopener noreferrer">Facebooku</a>.
+        </p>
+
+        <p class="news-more">
+          <a class="news-more-link" href="aktuality/">Všechny aktuality →</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="kontakt" aria-labelledby="kontakt-heading">
       <div class="container contact-grid">
         <div>
           <h2 id="kontakt-heading">Kontakt a provoz</h2>
@@ -374,6 +412,6 @@
     ]
   }
   </script>
-  <script src="js/main.js?v=20260419e" defer></script>
+  <script src="js/main.js?v=20260505" defer></script>
 </body>
 </html>
