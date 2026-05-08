@@ -848,7 +848,7 @@ a:hover {
 .address-map-preview {
   position: relative;
   width: 100%;
-  height: clamp(150px, 34vw, 220px);
+  height: clamp(220px, 38vw, 280px);
   margin-top: 0.85rem;
   border-radius: var(--radius);
   overflow: hidden;
@@ -857,12 +857,19 @@ a:hover {
   background: var(--color-surface);
 }
 
+@media (max-width: 768px) {
+  .address-map-preview {
+    height: 280px;
+  }
+}
+
 .address-map-frame {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
+  touch-action: pan-x pan-y pinch-zoom;
 }
 
 .address-map-hint {
