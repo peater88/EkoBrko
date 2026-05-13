@@ -145,3 +145,33 @@
     touchStartX = null;
   });
 })();
+
+(function () {
+  var links = document.querySelectorAll(".news-media[data-youtube-id]");
+  if (!links.length) return;
+
+  links.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+      e.preventDefault();
+      var id = link.getAttribute("data-youtube-id");
+      var type = link.getAttribute("data-youtube-type");
+      var title = link.getAttribute("data-youtube-title") || "YouTube video";
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) + "?autoplay=1&rel=0&modestbranding=1";
+      iframe.title = title;
+      iframe.setAttribute("frameborder", "0");
+      iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+      iframe.setAttribute("allowfullscreen", "");
+      iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      link.innerHTML = "";
+      link.appendChild(iframe);
+      link.classList.add("news-media--playing");
+      if (type === "shorts") link.classList.add("news-media--shorts");
+      link.removeAttribute("href");
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+      link.setAttribute("role", "presentation");
+    });
+  });
+})();
