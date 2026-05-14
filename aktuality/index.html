@@ -18,7 +18,31 @@
   <meta property="og:image" content="https://www.ekobrko.cz/assets/logo.png">
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/css/styles.css?v=20260513">
+  <link rel="stylesheet" href="/css/styles.css?v=20260514">
+
+  <!-- Google tag (gtag.js) – GDPR: defaultně bez souhlasu, měření až po opt-in. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0RLFE3JVR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+
+    try {
+      if (localStorage.getItem('ekobrko-cookie-consent') === 'accepted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    } catch (e) {}
+
+    gtag('config', 'G-D0RLFE3JVR', { 'anonymize_ip': true });
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Přeskočit na obsah</a>
@@ -142,9 +166,25 @@
     </section>
   </main>
 
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-desc" hidden>
+    <div class="container cookie-banner-inner">
+      <div class="cookie-banner-content">
+        <h2 id="cookie-title" class="cookie-banner-title">Cookies</h2>
+        <p id="cookie-desc" class="cookie-banner-desc">
+          Tento web používá cookies služby Google Analytics k anonymnímu měření návštěvnosti.
+          Souhlas můžete kdykoli změnit v patičce stránky.
+        </p>
+      </div>
+      <div class="cookie-banner-actions">
+        <button type="button" class="cookie-btn cookie-btn-reject" data-cookie-action="reject">Odmítnout</button>
+        <button type="button" class="cookie-btn cookie-btn-accept" data-cookie-action="accept">Přijmout</button>
+      </div>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> EkoBRKO s.r.o. Všechna práva vyhrazena.</p>
+      <p>© <span id="year"></span> EkoBRKO s.r.o. Všechna práva vyhrazena. <a class="footer-cookies-link" href="#" data-cookie-settings>Nastavení cookies</a></p>
       <p class="footer-social">
         <a class="footer-social-link" href="https://www.facebook.com/EkoBRKOsro/" target="_blank" rel="noopener noreferrer" aria-label="EkoBRKO na Facebooku">
           <svg class="footer-social-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
@@ -157,6 +197,6 @@
     </div>
   </footer>
 
-  <script src="/js/main.js?v=20260513" defer></script>
+  <script src="/js/main.js?v=20260514" defer></script>
 </body>
 </html>

@@ -1193,3 +1193,132 @@ body.lightbox-open {
 .footer-social-label {
   font-size: 0.85rem;
 }
+
+.footer-cookies-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  opacity: 0.85;
+  margin-left: 0.5rem;
+  font-size: 0.9em;
+}
+
+.footer-cookies-link:hover,
+.footer-cookies-link:focus-visible {
+  opacity: 1;
+}
+
+/* Cookie banner */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 900;
+  background: #1a2410;
+  color: #f7faf4;
+  padding: 1rem 0;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.25);
+  border-top: 3px solid var(--color-leaf);
+  animation: cookie-slide-up 0.25s ease-out;
+}
+
+.cookie-banner[hidden] {
+  display: none;
+}
+
+@keyframes cookie-slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.cookie-banner-inner {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cookie-banner-content {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.cookie-banner-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cookie-banner-desc {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 0.65rem 1.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.cookie-btn:active {
+  transform: translateY(1px);
+}
+
+.cookie-btn-reject {
+  background: transparent;
+  color: #f7faf4;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.cookie-btn-reject:hover,
+.cookie-btn-reject:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+  outline: none;
+}
+
+.cookie-btn-accept {
+  background: var(--color-leaf);
+  color: #fff;
+  border-color: var(--color-leaf);
+}
+
+.cookie-btn-accept:hover,
+.cookie-btn-accept:focus-visible {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  .cookie-banner-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .cookie-banner-actions {
+    width: 100%;
+  }
+
+  .cookie-btn {
+    flex: 1 1 0;
+    padding: 0.7rem 0.5rem;
+  }
+}

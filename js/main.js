@@ -175,3 +175,69 @@
     });
   });
 })();
+
+(function () {
+  var STORAGE_KEY = "ekobrko-cookie-consent";
+  var banner = document.getElementById("cookie-banner");
+  if (!banner) return;
+
+  function gtagSafe() {
+    if (typeof window.gtag === "function") {
+      window.gtag.apply(null, arguments);
+    } else if (window.dataLayer && window.dataLayer.push) {
+      window.dataLayer.push(arguments);
+    }
+  }
+
+  function getStored() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+  }
+
+  function setStored(v) {
+    try { localStorage.setItem(STORAGE_KEY, v); } catch (e) {}
+  }
+
+  function clearStored() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  }
+
+  function showBanner() {
+    banner.hidden = false;
+  }
+
+  function hideBanner() {
+    banner.hidden = true;
+  }
+
+  function accept() {
+    setStored("accepted");
+    gtagSafe("consent", "update", { "analytics_storage": "granted" });
+    hideBanner();
+  }
+
+  function reject() {
+    setStored("rejected");
+    gtagSafe("consent", "update", { "analytics_storage": "denied" });
+    hideBanner();
+  }
+
+  banner.querySelectorAll("[data-cookie-action]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var action = btn.getAttribute("data-cookie-action");
+      if (action === "accept") accept();
+      else reject();
+    });
+  });
+
+  document.querySelectorAll("[data-cookie-settings]").forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      clearStored();
+      showBanner();
+    });
+  });
+
+  if (!getStored()) {
+    showBanner();
+  }
+})();
