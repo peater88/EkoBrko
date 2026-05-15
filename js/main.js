@@ -241,3 +241,18 @@
     showBanner();
   }
 })();
+
+(function () {
+  var nodes = document.querySelectorAll(".email-obfuscated[data-user][data-domain]");
+  nodes.forEach(function (el) {
+    var user = el.getAttribute("data-user");
+    var domain = el.getAttribute("data-domain");
+    if (!user || !domain) return;
+    var addr = user + "@" + domain;
+    var a = document.createElement("a");
+    a.href = "mailto:" + addr;
+    a.textContent = addr;
+    a.className = "email-link";
+    el.replaceWith(a);
+  });
+})();
