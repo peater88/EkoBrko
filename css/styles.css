@@ -742,6 +742,31 @@ a:hover {
   opacity: 1;
 }
 
+/* Statická fotka v aktualitě – bez „lift" efektu a interakce. */
+.news-media--photo {
+  cursor: default;
+  margin: 0.25rem 0;
+}
+
+.news-media--photo:hover,
+.news-media--photo:focus-visible {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Krátký výčet uvnitř karty aktuality. */
+.news-list {
+  margin: 0.15rem 0 0.35rem;
+  padding-left: 1.25rem;
+  color: var(--color-muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.news-list li {
+  margin-bottom: 0.15rem;
+}
+
 /* Po kliknutí na náhled se nahradí přímo přehrávačem YouTube (facade pattern). */
 .news-media--playing {
   cursor: default;
