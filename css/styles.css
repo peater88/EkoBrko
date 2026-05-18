@@ -1169,13 +1169,12 @@ body.lightbox-open {
 }
 
 .footer-social-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
   color: rgba(255, 255, 255, 0.85);
   opacity: 0.9;
   transition: opacity 0.2s;
+  font-size: 0.9rem;
 }
 
 .footer-social-link:hover,
@@ -1183,15 +1182,6 @@ body.lightbox-open {
   color: #fff;
   opacity: 1;
   outline: none;
-}
-
-.footer-social-icon {
-  display: block;
-  border-radius: 50%;
-}
-
-.footer-social-label {
-  font-size: 0.85rem;
 }
 
 .footer-cookies-link {
