@@ -256,3 +256,174 @@
     el.replaceWith(a);
   });
 })();
+
+(function () {
+  var form = document.getElementById("contact-form");
+  var statusEl = document.getElementById("contact-form-status");
+  var tokenInput = document.getElementById("contact-captcha-token");
+  var questionEl = document.getElementById("contact-captcha-question");
+  var captchaInput = document.getElementById("contact-captcha");
+  var refreshBtn = document.getElementById("contact-captcha-refresh");
+  var submitBtn = document.getElementById("contact-submit");
+  var honeypot = document.getElementById("contact-website");
+  if (!form || !statusEl || !tokenInput || !questionEl || !captchaInput || !submitBtn) return;
+
+  var apiBase = "/api/contact";
+
+  var MSG_NO_API =
+    "Formulář teď nemůže kontaktovat server (často lokální náhled bez API – vrací se HTML místo dat). Po nasazení na Vercel to funguje; lokálně zkuste příkaz „vercel dev“.";
+
+  function readApiJson(res) {
+    return res.text().then(function (text) {
+      var t = text.trim();
+      if (
+        t.charCodeAt(0) === 60 ||
+        t.slice(0, 9).toLowerCase() === "<!doctype" ||
+        t.slice(0, 5).toLowerCase() === "<html"
+      ) {
+        throw new Error(MSG_NO_API);
+      }
+      try {
+        return { res: res, data: JSON.parse(text) };
+      } catch (e) {
+        throw new Error(MSG_NO_API);
+      }
+    });
+  }
+
+  function setStatus(kind, msg) {
+    statusEl.textContent = msg || "";
+    statusEl.className = "contact-form-status";
+    if (kind === "error") statusEl.classList.add("contact-form-status--error");
+    else if (kind === "success") statusEl.classList.add("contact-form-status--success");
+  }
+
+  function setLoading(on) {
+    submitBtn.disabled = on;
+    submitBtn.setAttribute("aria-busy", on ? "true" : "false");
+    if (refreshBtn) refreshBtn.disabled = on;
+  }
+
+  function fetchChallenge() {
+    return fetch(apiBase, { method: "GET", headers: { Accept: "application/json" } }).then(function (res) {
+      return readApiJson(res);
+    });
+  }
+
+  function applyChallenge(data) {
+    tokenInput.value = data.token || "";
+    questionEl.textContent = data.question || "…";
+    captchaInput.value = "";
+  }
+
+  function initChallenge() {
+    setLoading(true);
+    setStatus("", "");
+    return fetchChallenge()
+      .then(function (pair) {
+        if (!pair.res.ok) throw new Error(pair.data.error || "Nepodařilo se načíst ověření.");
+        applyChallenge(pair.data);
+      })
+      .catch(function (err) {
+        tokenInput.value = "";
+        questionEl.textContent = "—";
+        setStatus(
+          "error",
+          err.message ||
+            "Nepodařilo se načíst ověření. Formulář potřebuje funkční adresu /api/contact (např. nasazení na Vercel)."
+        );
+      })
+      .finally(function () {
+        setLoading(false);
+      });
+  }
+
+  function refreshChallenge() {
+    setLoading(true);
+    setStatus("", "");
+    return fetchChallenge()
+      .then(function (pair) {
+        if (!pair.res.ok) throw new Error(pair.data.error || "Nepodařilo se načíst ověření.");
+        applyChallenge(pair.data);
+      })
+      .catch(function (err) {
+        tokenInput.value = "";
+        questionEl.textContent = "—";
+        setStatus(
+          "error",
+          err.message ||
+            "Nepodařilo se načíst ověření. Formulář potřebuje funkční adresu /api/contact (např. nasazení na Vercel)."
+        );
+      })
+      .finally(function () {
+        setLoading(false);
+      });
+  }
+
+  if (refreshBtn) {
+    refreshBtn.addEventListener("click", function () {
+      refreshChallenge();
+    });
+  }
+
+  initChallenge();
+
+  function normalizeEmailField(raw) {
+    var s = typeof raw === "string" ? raw.trim().toLowerCase() : "";
+    return s.replace(/^@+/, "");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!tokenInput.value) {
+      setStatus("error", "Nejprve načtěte ověřovací příklad (obnovte stránku).");
+      return;
+    }
+
+    var emailVal = normalizeEmailField(form.email.value);
+
+    var payload = {
+      name: form.fullName.value.trim(),
+      email: emailVal,
+      phone: form.phone.value,
+      message: form.message.value,
+      captchaToken: tokenInput.value,
+      captchaAnswer: captchaInput.value,
+      website: honeypot ? honeypot.value : "",
+    };
+
+    if (!payload.name) {
+      setStatus("error", "Vyplňte prosím jméno a příjmení.");
+      return;
+    }
+    if (!payload.email) {
+      setStatus("error", "Vyplňte prosím e-mail.");
+      return;
+    }
+
+    setLoading(true);
+    fetch(apiBase, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then(function (res) {
+        return readApiJson(res).then(function (pair) {
+          if (!pair.res.ok) throw new Error(pair.data.error || "Odeslání se nezdařilo.");
+          setStatus("success", "Děkujeme, zpráva byla odeslána. Ozveme se v co nejkratší době.");
+          form.reset();
+          return fetchChallenge().then(function (pair2) {
+            if (!pair2.res.ok) return;
+            applyChallenge(pair2.data);
+          });
+        });
+      })
+      .catch(function (err) {
+        setStatus("error", err.message || "Odeslání se nezdařilo.");
+      })
+      .finally(function () {
+        setLoading(false);
+      });
+  });
+})();

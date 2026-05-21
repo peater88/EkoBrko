@@ -29,7 +29,7 @@
   <meta name="twitter:description" content="Uložení a zpracování zeminy, výkopku a bioodpadu – Mnichovo Hradiště, Mladá Boleslav a okolí. Kompost, zemina, recyklace. EkoBRKO Přestavlky, tel. 774 243 508.">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=20260518b">
+  <link rel="stylesheet" href="css/styles.css?v=20260521i">
 
   <!-- Google tag (gtag.js) – GDPR: defaultně bez souhlasu, měření až po opt-in. -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0RLFE3JVR"></script>
@@ -75,6 +75,7 @@
           <li><a href="#cenik">Ceník</a></li>
           <li><a href="#aktuality">Aktuality</a></li>
           <li><a href="/fotogalerie/">Fotogalerie</a></li>
+          <li><a href="#poptavkovy-formular">Poptávkový formulář</a></li>
           <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
         </ul>
       </nav>
@@ -358,6 +359,81 @@
           </ul>
         </div>
       </div>
+
+      <div class="container contact-form-wrap" id="poptavkovy-formular" tabindex="-1">
+        <div class="card contact-form-card">
+          <h3 class="contact-form-heading">Poptávka z webu</h3>
+          <p class="contact-form-intro">
+            Vyplňte formulář – zpráva dorazí na <strong>info@ekobrko.cz</strong>.
+            Údaje použijeme jen k vyřízení vaší poptávky.
+          </p>
+          <div class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></div>
+          <form id="contact-form" class="contact-form contact-form-matrix" novalidate>
+            <div class="contact-form-honeypot" aria-hidden="true">
+              <label for="contact-website">Webová stránka</label>
+              <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+            <input type="hidden" name="captchaToken" id="contact-captcha-token" value="">
+
+            <div class="contact-matrix-row">
+              <label for="contact-full-name" class="contact-matrix-label">Jméno a příjmení <span class="required-mark">*</span></label>
+              <div class="contact-matrix-field">
+                <input type="text" id="contact-full-name" name="fullName" required maxlength="160" autocomplete="name">
+              </div>
+            </div>
+
+            <div class="contact-matrix-row">
+              <label for="contact-email" class="contact-matrix-label">E-mail <span class="required-mark">*</span></label>
+              <div class="contact-matrix-field">
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  required
+                  maxlength="254"
+                  autocomplete="email"
+                  inputmode="email"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  placeholder="jan.novak@gmail.com"
+                >
+              </div>
+            </div>
+
+            <div class="contact-matrix-row">
+              <label for="contact-phone" class="contact-matrix-label">Telefonní číslo</label>
+              <div class="contact-matrix-field">
+                <input type="tel" id="contact-phone" name="phone" maxlength="40" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="contact-matrix-row contact-matrix-row--top">
+              <label for="contact-message" class="contact-matrix-label">Zpráva <span class="required-mark">*</span></label>
+              <div class="contact-matrix-field">
+                <textarea id="contact-message" name="message" required maxlength="4000" rows="5"></textarea>
+              </div>
+            </div>
+
+            <div class="contact-matrix-row contact-matrix-row--top">
+              <label class="contact-matrix-label" for="contact-captcha">
+                Ověření: kolik je <span id="contact-captcha-question">…</span>? <span class="required-mark">*</span>
+              </label>
+              <div class="contact-matrix-field">
+                <div class="contact-captcha-row">
+                  <input type="number" id="contact-captcha" name="captchaAnswer" required inputmode="numeric" autocomplete="off" aria-describedby="contact-captcha-hint">
+                  <button type="button" class="contact-captcha-refresh" id="contact-captcha-refresh">Nový příklad</button>
+                </div>
+                <p id="contact-captcha-hint" class="contact-matrix-hint">Jednoduchý součet jako ochrana proti automatickému vyplňování.</p>
+              </div>
+            </div>
+
+            <div class="contact-matrix-actions">
+              <button type="submit" class="contact-submit" id="contact-submit">Odeslat</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
       <div class="container legal-block">
         <h3 class="legal-heading">Fakturační údaje</h3>
         <p>
@@ -515,6 +591,6 @@
     ]
   }
   </script>
-  <script src="js/main.js?v=20260515" defer></script>
+  <script src="js/main.js?v=20260521j" defer></script>
 </body>
 </html>
