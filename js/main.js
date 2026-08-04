@@ -427,3 +427,45 @@
       });
   });
 })();
+
+(function () {
+  var PROMO_END = new Date("2026-08-31T23:59:59+02:00").getTime();
+  var modal = document.getElementById("promo-modal");
+  if (!modal) return;
+  if (Date.now() > PROMO_END) return;
+
+  function isHomepage() {
+    var path = window.location.pathname || "";
+    if (path === "/" || path === "/index.html") return true;
+    if (/\/index\.html$/i.test(path) && path.indexOf("/aktuality/") === -1 && path.indexOf("/fotogalerie/") === -1) {
+      return true;
+    }
+    return false;
+  }
+
+  if (!isHomepage()) return;
+
+  function openModal() {
+    modal.hidden = false;
+    document.body.classList.add("promo-modal-open");
+    var closeBtn = modal.querySelector(".promo-modal-close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove("promo-modal-open");
+  }
+
+  modal.querySelectorAll("[data-promo-close]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      closeModal();
+    });
+  });
+
+  modal.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+  window.setTimeout(openModal, 450);
+})();
