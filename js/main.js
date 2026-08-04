@@ -467,5 +467,30 @@
     if (e.key === "Escape") closeModal();
   });
 
+  modal.querySelectorAll("[data-promo-inquiry]").forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      var href = link.getAttribute("href") || "";
+      var id = "poptavkovy-formular";
+      if (href.indexOf("#") >= 0) {
+        id = href.slice(href.indexOf("#") + 1) || id;
+      }
+      var target = document.getElementById(id);
+      if (!target) {
+        closeModal();
+        return;
+      }
+      e.preventDefault();
+      closeModal();
+      window.setTimeout(function () {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", "#" + id);
+        } else {
+          window.location.hash = id;
+        }
+      }, 80);
+    });
+  });
+
   window.setTimeout(openModal, 450);
 })();
