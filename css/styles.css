@@ -1718,6 +1718,22 @@ body.promo-modal-open {
   -webkit-overflow-scrolling: touch;
 }
 
+.promo-modal-photo {
+  margin: 0 0 0.65rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  line-height: 0;
+  background: var(--color-bg);
+}
+
+.promo-modal-photo img {
+  display: block;
+  width: 100%;
+  max-height: 9.5rem;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
 .promo-modal-badge {
   display: inline-block;
   margin: 0 0 0.5rem;
