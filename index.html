@@ -29,7 +29,7 @@
   <meta name="twitter:description" content="Uložení a zpracování zeminy, výkopku a bioodpadu – Mnichovo Hradiště, Mladá Boleslav a okolí. Kompost, zemina, recyklace. EkoBRKO Přestavlky, tel. 774 243 508.">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=20260828c">
+  <link rel="stylesheet" href="css/styles.css?v=20260828d">
 
   <!-- Google tag (gtag.js) – GDPR: defaultně bez souhlasu, měření až po opt-in. -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0RLFE3JVR"></script>
@@ -219,12 +219,12 @@
                 <strong>Veselá u Mnichova Hradiště</strong> nasadila korunu – fotografie níže jsou právě ze svozu ve Veselé,
                 která se tak dostává na první místo našeho negativního žebříčku.
               </p>
-              <ul class="news-photos" role="list">
-                <li><img src="/assets/aktuality/bioodpad-vesela-mh/foto-01.jpg" alt="Plastová taška v bioodpadu ze svozu ve Veselé u Mnichova Hradiště" loading="lazy" decoding="async" width="1400" height="1050"></li>
-                <li><img src="/assets/aktuality/bioodpad-vesela-mh/foto-02.jpg" alt="Plastové obaly a textil v bioodpadu ze svozu ve Veselé" loading="lazy" decoding="async" width="1400" height="1050"></li>
-                <li><img src="/assets/aktuality/bioodpad-vesela-mh/foto-03.jpg" alt="Plastová taška a reklamní leták v bioodpadu ze svozu ve Veselé" loading="lazy" decoding="async" width="1400" height="1050"></li>
-                <li><img src="/assets/aktuality/bioodpad-vesela-mh/foto-04.jpg" alt="Kartónová krabice a plast v bioodpadu ze svozu ve Veselé" loading="lazy" decoding="async" width="1400" height="1050"></li>
-                <li><img src="/assets/aktuality/bioodpad-vesela-mh/foto-05.jpg" alt="Textilní síťovina a plasty v bioodpadu ze svozu ve Veselé" loading="lazy" decoding="async" width="1400" height="1050"></li>
+              <ul class="news-photos" data-lightbox role="list">
+                <li><a class="lightbox-item" href="/assets/aktuality/bioodpad-vesela-mh/foto-01.jpg" aria-label="Otevřít fotku 1 v náhledu"><img src="/assets/aktuality/bioodpad-vesela-mh/foto-01.jpg" alt="Plastová taška v bioodpadu ze svozu ve Veselé u Mnichova Hradiště" loading="lazy" decoding="async" width="1400" height="1050"></a></li>
+                <li><a class="lightbox-item" href="/assets/aktuality/bioodpad-vesela-mh/foto-02.jpg" aria-label="Otevřít fotku 2 v náhledu"><img src="/assets/aktuality/bioodpad-vesela-mh/foto-02.jpg" alt="Plastové obaly a textil v bioodpadu ze svozu ve Veselé" loading="lazy" decoding="async" width="1400" height="1050"></a></li>
+                <li><a class="lightbox-item" href="/assets/aktuality/bioodpad-vesela-mh/foto-03.jpg" aria-label="Otevřít fotku 3 v náhledu"><img src="/assets/aktuality/bioodpad-vesela-mh/foto-03.jpg" alt="Plastová taška a reklamní leták v bioodpadu ze svozu ve Veselé" loading="lazy" decoding="async" width="1400" height="1050"></a></li>
+                <li><a class="lightbox-item" href="/assets/aktuality/bioodpad-vesela-mh/foto-04.jpg" aria-label="Otevřít fotku 4 v náhledu"><img src="/assets/aktuality/bioodpad-vesela-mh/foto-04.jpg" alt="Kartónová krabice a plast v bioodpadu ze svozu ve Veselé" loading="lazy" decoding="async" width="1400" height="1050"></a></li>
+                <li><a class="lightbox-item" href="/assets/aktuality/bioodpad-vesela-mh/foto-05.jpg" aria-label="Otevřít fotku 5 v náhledu"><img src="/assets/aktuality/bioodpad-vesela-mh/foto-05.jpg" alt="Textilní síťovina a plasty v bioodpadu ze svozu ve Veselé" loading="lazy" decoding="async" width="1400" height="1050"></a></li>
               </ul>
               <p class="news-excerpt">
                 Do bioodpadu rozhodně nepatří plastové obaly, směsný odpad ani další příměsi, které vidíte na fotografiích.
@@ -512,6 +512,16 @@
     </section>
   </main>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Náhled fotky" hidden>
+    <button type="button" class="lightbox-btn lightbox-close" aria-label="Zavřít náhled">×</button>
+    <button type="button" class="lightbox-btn lightbox-prev" aria-label="Předchozí fotka">‹</button>
+    <button type="button" class="lightbox-btn lightbox-next" aria-label="Další fotka">›</button>
+    <figure class="lightbox-figure">
+      <img class="lightbox-img" alt="" decoding="async">
+      <figcaption class="lightbox-caption" aria-live="polite"></figcaption>
+    </figure>
+  </div>
+
   <div class="promo-modal" id="promo-modal" role="dialog" aria-modal="true" aria-labelledby="promo-modal-title" hidden>
     <button type="button" class="promo-modal-backdrop" data-promo-close aria-label="Zavřít"></button>
     <div class="promo-modal-panel">
@@ -679,6 +689,6 @@
     ]
   }
   </script>
-  <script src="js/main.js?v=20260828c" defer></script>
+  <script src="js/main.js?v=20260828d" defer></script>
 </body>
 </html>

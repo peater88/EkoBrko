@@ -48,19 +48,26 @@
 })();
 
 (function () {
-  var items = Array.prototype.slice.call(document.querySelectorAll(".gallery-item"));
   var box = document.getElementById("lightbox");
-  if (!items.length || !box) return;
+  if (!box) return;
 
   var imgEl = box.querySelector(".lightbox-img");
   var captionEl = box.querySelector(".lightbox-caption");
   var btnClose = box.querySelector(".lightbox-close");
   var btnPrev = box.querySelector(".lightbox-prev");
   var btnNext = box.querySelector(".lightbox-next");
+  var items = [];
   var current = 0;
   var lastFocus = null;
 
+  function getGroup(link) {
+    var group = link.closest("[data-lightbox], .gallery-grid");
+    if (!group) return [link];
+    return Array.prototype.slice.call(group.querySelectorAll(".gallery-item, .lightbox-item"));
+  }
+
   function show(i) {
+    if (!items.length) return;
     if (i < 0) i = items.length - 1;
     if (i >= items.length) i = 0;
     current = i;
@@ -75,6 +82,7 @@
   }
 
   function preload(i) {
+    if (!items.length) return;
     if (i < 0) i = items.length - 1;
     if (i >= items.length) i = 0;
     var src = items[i].getAttribute("href");
@@ -82,7 +90,8 @@
     pre.src = src;
   }
 
-  function open(i) {
+  function open(group, i) {
+    items = group;
     lastFocus = document.activeElement;
     box.hidden = false;
     document.body.classList.add("lightbox-open");
@@ -95,6 +104,7 @@
     box.hidden = true;
     document.body.classList.remove("lightbox-open");
     imgEl.src = "";
+    items = [];
     document.removeEventListener("keydown", onKey);
     if (lastFocus && typeof lastFocus.focus === "function") {
       lastFocus.focus();
@@ -114,11 +124,14 @@
     }
   }
 
-  items.forEach(function (link, i) {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      open(i);
-    });
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest(".gallery-item, .lightbox-item");
+    if (!link || !link.getAttribute("href")) return;
+    var group = getGroup(link);
+    var index = group.indexOf(link);
+    if (index === -1) return;
+    e.preventDefault();
+    open(group, index);
   });
 
   btnClose.addEventListener("click", close);
