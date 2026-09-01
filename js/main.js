@@ -442,21 +442,10 @@
 })();
 
 (function () {
-  var PROMO_END = new Date("2026-08-31T23:59:59+02:00").getTime();
+  var PROMO_END = new Date("2026-09-30T23:59:59+02:00").getTime();
   var modal = document.getElementById("promo-modal");
   if (!modal) return;
   if (Date.now() > PROMO_END) return;
-
-  function isHomepage() {
-    var path = window.location.pathname || "";
-    if (path === "/" || path === "/index.html") return true;
-    if (/\/index\.html$/i.test(path) && path.indexOf("/aktuality/") === -1 && path.indexOf("/fotogalerie/") === -1) {
-      return true;
-    }
-    return false;
-  }
-
-  if (!isHomepage()) return;
 
   function openModal() {
     modal.hidden = false;
