@@ -1,0 +1,150 @@
+/* A mission is one screen. dvh follows the browser bars on mobile. */
+.game-top .round-count {margin:0;white-space:nowrap}
+@media (max-width:750px), (max-height:600px) and (max-width:1000px) {
+  body.playing {
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+    overscroll-behavior:none;
+    display:flex;
+    flex-direction:column;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .playing header {position:relative;flex:0 0 48px;height:48px;width:100%;padding:4px 12px;gap:8px}
+  .playing .brand img {width:112px;max-height:38px}
+  .playing .header-note {display:none}
+  .playing .help {min-height:40px;padding:6px 12px;font-size:.875rem}
+  .playing main {flex:1;min-height:0;width:100%;padding:0 6px 6px;display:flex;flex-direction:column;gap:6px}
+  .playing footer {display:none}
+  .playing .game-top {flex:0 0 44px;min-height:44px;margin:0;gap:8px;scroll-margin-top:0}
+  .playing .game-top .back {min-height:44px;padding:6px 10px;font-size:.875rem}
+  .playing .sound-toggle {max-width:96px;font-size:.8125rem!important;line-height:1.15}
+  .playing .round-count {margin:0;white-space:nowrap;font-size:.875rem}
+  .playing .journey-step {font-size:.875rem}
+  .playing .game {flex:1;min-height:0;padding:10px 8px;border-radius:18px;overflow:hidden}
+  .playing .game h1 {font-size:clamp(1.15rem,4.8vw,1.55rem);line-height:1.15;margin:0;letter-spacing:-.4px}
+  .playing .game .eyebrow {display:none}
+
+  /* All five bins stay together; the next action uses the vacated item space. */
+  .playing .sorting-game {
+    display:grid;
+    grid-template-areas:'title' 'instruction' 'card' 'bins' 'feedback';
+    grid-template-rows:auto auto minmax(68px,1fr) auto 104px;
+    gap:8px;
+  }
+  .playing .sorting-game h1 {grid-area:title}
+  .playing .sorting-game .subtitle {grid-area:instruction;margin:0;font-size:.875rem;line-height:1.3}
+  .playing .sorting-game .item {grid-area:card;align-self:center;justify-self:center;width:min(230px,90%);height:100%;max-height:150px;min-height:0;margin:0;padding:4px 8px;gap:0;border-radius:18px;box-shadow:0 4px 0 #cfddc0}
+  .playing .sorting-game .item .emoji {font-size:clamp(2rem,7dvh,3.5rem);line-height:1.1}
+  .playing .sorting-game .item strong {font-size:.875rem;line-height:1.15}
+  .playing>.drag-ghost {min-height:0;padding:4px 8px;gap:0}
+  .playing>.drag-ghost .emoji {font-size:clamp(1.7rem,6dvh,3.5rem);line-height:1.1}
+  .playing>.drag-ghost strong {font-size:.875rem;line-height:1.15}
+  .playing .sorting-game .bins {grid-area:bins;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:8px 0 0;padding:0 0 2px}
+  .playing .sorting-game .bin {min-width:0;min-height:102px;width:100%;padding:0 1px;touch-action:manipulation}
+  .playing .sorting-game .bin-shape {width:min(56px,82%);height:68px;margin:0 auto 14px;border-radius:5px 5px 10px 10px;box-shadow:inset -6px 0 0 #00000013}
+  .playing .sorting-game .bin-shape:before {left:-3px;right:-3px}
+  .playing .sorting-game .bin-shape:after {content:'';left:6px;right:6px;bottom:-6px;height:8px;background:linear-gradient(90deg,#344539 8px,transparent 8px,transparent calc(100% - 8px),#344539 calc(100% - 8px));border-radius:2px}
+  .playing .sorting-game .bin-face {top:12px;height:30px}
+  .playing .sorting-game .bin-logo {bottom:6px;border-width:1px}
+  .playing .sorting-game .bin b {font-size:.875rem;line-height:1.15;display:block}
+  .playing .sorting-game .bin small {display:none}
+  .playing .sorting-game .feedback {grid-area:feedback;align-self:stretch;display:flex;flex-direction:column;justify-content:center;margin:0;min-height:0;max-width:none;font-size:.875rem;line-height:1.3;padding:6px 8px;border-radius:12px;overflow-wrap:anywhere}
+  .playing .sorting-game .cheer {font-size:1rem;margin:0 0 3px}
+  .playing .sorting-game .next {grid-area:card;align-self:center;justify-self:center;z-index:5;min-height:48px;margin:0;padding:12px 20px}
+  .playing .sorting-game:has(.next:not([hidden])) .item {pointer-events:none}
+  .playing .bin-theatre {bottom:28px}
+  .playing .theatre-rat,.playing .theatre-cat {width:52px}
+
+  /* The scene takes whatever space remains below the instructions. */
+  .playing .guided-adventure {height:100%;min-height:0;display:flex;flex-direction:column;gap:8px}
+  .playing .guided-adventure h1 {flex:none}
+  .playing .coach {flex:none;grid-template-columns:30px minmax(0,1fr);gap:5px 8px;margin:0;padding:8px;border-radius:13px}
+  .playing #guide-icon {font-size:1.5rem}
+  .playing .coach-copy {gap:3px}
+  .playing .coach-copy strong {font-size:1rem;line-height:1.2}
+  .playing .coach-copy>span {font-size:.875rem;line-height:1.2}
+  .playing .coach>#adventure-next {min-height:44px;margin:2px 0 0;padding:8px 12px;font-size:1rem}
+  .playing .adventure-scene {flex:1;min-height:0;border-radius:14px}
+  .playing .guided-adventure .task-status {flex:none;flex-wrap:nowrap;gap:8px;margin:0;font-size:.875rem;line-height:1.2;min-height:20px}
+  .playing .guided-adventure .task-status>span {min-width:85px}
+  .playing .guided-adventure .advice {flex:none;font-size:.875rem;line-height:1.25;padding:0;min-height:0}
+  .playing .guided-adventure .loading-backdrop {height:60%}
+  .playing .guided-adventure .excavator {width:46%;left:1%;top:6%}
+  .playing .guided-adventure .load-truck {width:38%;right:2%;top:22%}
+  .playing .one-pile {position:absolute;left:0;right:0;bottom:0;height:45%;min-height:0;margin:0;padding:10px;align-items:center;border-top-width:6px}
+  .playing .soil-button {min-width:130px;padding:3px 16px 6px;border-radius:15px}
+  .playing .soil-button img {height:clamp(35px,8dvh,75px);width:110px;object-fit:contain}
+  .playing .soil-button b {font-size:1rem}
+  .playing .found-shoe {min-width:130px;padding:3px 12px}
+  .playing .found-shoe>span {font-size:2.5rem;line-height:1}
+  .playing .found-shoe>b {font-size:.875rem}
+  .playing .shoe-kept {font-size:.75rem;bottom:3px;right:3px;padding:3px}
+  .playing .adventure-scene:has(.continuous-drive) {display:flex;flex-direction:column}
+  .playing .guided-adventure .continuous-drive {flex:1;min-height:0;height:auto;order:0}
+  .playing .guided-adventure .driving-controls {order:1;flex:none;padding:7px 8px;gap:10px;z-index:9}
+  .playing .guided-adventure .steering-button {min-width:60px;min-height:48px;font-size:1.4rem!important;touch-action:manipulation}
+  .playing .steering-button>span {font-size:.875rem;line-height:1.1}
+  .playing .guided-adventure .driving-controls #start-drive {min-width:120px;min-height:48px;padding:6px 10px;font-size:.875rem}
+  .playing .guided-adventure .driver-truck {width:clamp(28px,6dvh,46px)}
+  .playing .adventure-scene:has(.processing-machine) {display:flex;flex-direction:column}
+  .playing #process-soil {flex:none;min-height:44px;margin:8px auto;padding:8px 18px;font-size:1rem}
+  .playing .processing-machine {flex:1;min-height:0;display:flex;flex-direction:column;padding:0}
+  .playing .processing-machine>svg {flex:1;min-height:0;height:0;width:100%;max-height:none}
+  .playing .machine-output-labels {flex:none;padding:3px 7px 7px;font-size:.875rem}
+  .playing .machine-output-labels>span {padding:5px 7px}
+
+  .playing .result,.playing .haul-finish {height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+  .playing .result-logo {width:130px;max-height:45px;object-fit:contain;margin:0}
+  .playing .badge {width:68px;height:68px;font-size:2rem;border-width:5px;margin:0}
+  .playing .result p,.playing .haul-finish p {margin:0;font-size:.9375rem;line-height:1.35}
+  .playing .result .buttons,.playing .haul-finish .buttons {gap:8px;margin:0;flex:none}
+  .playing .buttons button {min-height:44px;padding:10px 14px}
+  .playing .delivery-scene {flex:0 1 120px;min-height:0;margin:0;width:min(350px,100%)}
+  .playing .finish-truck {height:100%}
+  .playing .finish-truck>svg {height:100%;width:100%}
+  .playing .haul-summary {gap:5px;margin:0}
+  .playing .haul-summary>span {font-size:.8125rem;padding:6px 8px}
+  .playing dialog {max-height:calc(100dvh - 24px);overflow-y:auto;padding:20px;overscroll-behavior:contain}
+}
+
+@media (orientation:portrait) and (max-width:750px) and (max-height:540px) {
+  .playing .sorting-game {grid-template-rows:auto auto minmax(76px,1fr) auto 96px;gap:6px}
+  .playing .sorting-game .bin {min-height:90px}
+  .playing .sorting-game .bin-shape {height:60px}
+  .playing .sorting-game .item .emoji {font-size:clamp(1.7rem,6dvh,2.5rem)}
+}
+
+@media (orientation:portrait) and (max-width:750px) and (max-height:500px) {
+  .playing .sorting-game {grid-template-areas:'title' 'card' 'bins' 'feedback';grid-template-rows:auto minmax(76px,1fr) auto 96px}
+  .playing .sorting-game .subtitle {display:none}
+}
+
+/* A landscape phone has more width than height: use it for the item and bins. */
+@media (orientation:landscape) and (max-height:600px) and (max-width:1000px) {
+  .playing header {flex-basis:40px;height:40px}
+  .playing .brand img {width:100px;max-height:30px}
+  .playing .help {min-height:36px}
+  .playing .game {padding:7px 10px}
+  .playing .sorting-game {grid-template-columns:30% minmax(0,1fr);grid-template-areas:'title title' 'instruction instruction' 'card bins' 'feedback feedback';grid-template-rows:auto auto minmax(65px,1fr) 70px;gap:4px 14px}
+  .playing .sorting-game .item {max-height:100px}
+  .playing .sorting-game .item .emoji {font-size:2rem}
+  .playing .sorting-game .bins {margin:0;align-self:center}
+  .playing .sorting-game .bin {min-height:80px}
+  .playing .sorting-game .bin-shape {height:52px;margin-bottom:10px}
+  .playing .sorting-game .bin-face {height:23px;top:9px}
+  .playing .sorting-game .bin-logo {width:50%;left:25%;bottom:3px}
+  .playing .sorting-game .feedback {font-size:.875rem;line-height:1.15}
+  .playing .sorting-game .next {font-size:.875rem;padding:8px}
+  .playing .guided-adventure {display:grid;grid-template-columns:36% minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:6px 12px}
+  .playing .guided-adventure h1 {grid-column:1;grid-row:1;font-size:1.15rem}
+  .playing .coach {grid-column:1;grid-row:2;align-self:start}
+  .playing .adventure-scene {grid-column:2;grid-row:1/4}
+  .playing .guided-adventure .task-status {grid-column:1;grid-row:3}
+  .playing .guided-adventure .advice {display:none}
+  .playing .result,.playing .haul-finish {gap:6px}
+  .playing .result-logo {width:100px;max-height:30px}
+  .playing .badge {display:none}
+  .playing .delivery-scene {flex-basis:55px}
+  .playing .result .tiny {display:none}
+}
