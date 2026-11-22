@@ -76,10 +76,10 @@
   .playing .soil-button {min-width:130px;padding:3px 16px 6px;border-radius:15px}
   .playing .soil-button img {height:clamp(35px,8dvh,75px);width:110px;object-fit:contain}
   .playing .soil-button b {font-size:1rem}
-  .playing .found-shoe {min-width:130px;padding:3px 12px}
-  .playing .found-shoe>span {font-size:2.5rem;line-height:1}
-  .playing .found-shoe>b {font-size:.875rem}
-  .playing .shoe-kept {font-size:.75rem;bottom:3px;right:3px;padding:3px}
+  .playing .found-litter {min-width:130px;padding:3px 12px}
+  .playing .found-litter>span {font-size:2.5rem;line-height:1}
+  .playing .found-litter>b {font-size:.875rem}
+  .playing .litter-kept {font-size:.75rem;bottom:3px;right:3px;padding:3px}
   .playing .adventure-scene:has(.continuous-drive) {display:flex;flex-direction:column}
   .playing .guided-adventure .continuous-drive {flex:1;min-height:0;height:auto;order:0}
   .playing .guided-adventure .driving-controls {order:1;flex:none;padding:7px 8px;gap:10px;z-index:9}
