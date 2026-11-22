@@ -16,3 +16,5 @@ header{position:sticky;top:0;z-index:30;background:#f4f8eef5;border-bottom:1px s
 .journey-step{font-weight:900;white-space:nowrap;font-size:.875rem}
 
 .back-to-site{color:#41633e;font-weight:800;text-underline-offset:3px}
+
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}.hero-actions button{min-height:52px;padding:14px 18px}@media(max-width:400px){.hero-actions{flex-direction:column}.hero-actions button{width:100%}}
